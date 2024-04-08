@@ -1,0 +1,154 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class input_system : MonoBehaviour
+{
+    Controls input = null;
+
+    public static float mx, my, scroll;
+    public static bool shoot, jump, debug, inventory, minimap, options, dash;
+    public static Vector2 mousePos;
+
+    public static input_system Instance;
+
+    void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(this);
+        }
+        else Destroy(this);
+        input = new Controls();
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+
+        input.Player.MVT.performed += OnMVTPerfomed;
+        input.Player.MVT.canceled += OnMVTCancelled;
+
+        input.Player.Jump.performed += OnJump;
+        input.Player.Jump.canceled += OnJump;
+
+        input.Player.Shoot.performed += OnShoot;
+        input.Player.Shoot.canceled += OnShoot;
+
+        input.Player.MousePos.performed += OnMouse;
+
+        input.Player.Debug.performed += OnDebug;
+        input.Player.Debug.canceled += OnDebug;
+
+        input.Player.Inventory.performed += OnInventory;
+        input.Player.Inventory.canceled += OnInventory;
+
+        input.Player.MiniMap.performed += OnMiniMap;
+        input.Player.MiniMap.canceled += OnMiniMap;
+
+        input.Player.Options.performed += OnOptions;
+        input.Player.Options.canceled += OnOptions;
+
+        input.Player.Scroll.performed += OnScroll;
+        input.Player.Scroll.canceled += OnScroll;
+
+        input.Player.Dash.performed += OnDash;
+        input.Player.Dash.canceled += OnDash;
+    }
+
+    void Update()
+    {
+        if(allref.paused) return;
+        if(player.Instance == null) return;
+        player.Instance.mx = mx;
+    }
+
+    // ------------MVT
+
+    void OnMVTPerfomed(InputAction.CallbackContext value)
+    {
+        if(debug_console.debugActive) return;
+        
+        mx = value.ReadValue<Vector2>().x;
+        my = value.ReadValue<Vector2>().y;
+
+        if(allref.paused) return;
+        if(player.Instance == null) return;
+        player.Instance.Flip(mx<0);
+    }
+
+    void OnMVTCancelled(InputAction.CallbackContext value)
+    {
+        mx = 0;
+        my = 0;
+    }
+
+    // Jump
+
+    void OnJump(InputAction.CallbackContext value)
+    {
+        if(debug_console.debugActive) return;
+
+        jump = value.ReadValue<float>() > 0f;
+        if(player.Instance != null && jump) player.Instance.SetBuffer(); 
+    }
+
+    // Shoot
+
+    void OnShoot(InputAction.CallbackContext value)
+    {
+        shoot = value.ReadValue<float>() > 0f;
+    }
+
+    // Dash
+
+    void OnDash(InputAction.CallbackContext value)
+    {
+        dash = value.ReadValue<float>() > 0f;
+    }
+
+    // MousePos
+
+    void OnMouse(InputAction.CallbackContext value)
+    {
+        mousePos = value.ReadValue<Vector2>();
+    }
+
+    // Debug
+
+    void OnDebug(InputAction.CallbackContext value)
+    {
+        debug = value.ReadValue<float>() > 0f;
+    }
+
+    // Inventory
+
+    void OnInventory(InputAction.CallbackContext value)
+    {
+        if(debug_console.debugActive) return;
+        inventory = value.ReadValue<float>() > 0f;
+    }
+
+    // MiniMap
+
+    void OnMiniMap(InputAction.CallbackContext value)
+    {
+        minimap = value.ReadValue<float>() > 0f;
+    }
+
+    // Options
+
+    void OnOptions(InputAction.CallbackContext value)
+    {
+        options = value.ReadValue<float>() > 0f;
+    }
+
+    // Scroll
+
+    void OnScroll(InputAction.CallbackContext value)
+    {
+        scroll = value.ReadValue<float>();
+    }
+}
