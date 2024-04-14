@@ -4,7 +4,7 @@ local M = {
     dependencies = {
         {
             'L3MON4D3/LuaSnip',
-            build = 'make_install_jsregexp'
+            -- build = 'make_install_jsregexp'
         },
 
         'hrsh7th/cmp-buffer',

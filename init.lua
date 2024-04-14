@@ -1,7 +1,8 @@
 require('core.launch')
 
 spec "core.config.colorscheme"
-spec "core.config.leap"
+-- spec "core.config.leap"
+spec "core.config.flash"
 spec "core.config.tabby"
 spec "core.config.which-key"
 spec "core.config.nvim-treesitter"

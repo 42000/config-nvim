@@ -14,7 +14,8 @@ function M.config()
         ensure_installed = {
             "lua_ls",
             "texlab",
-            "omnisharp_mono",
+            -- "omnisharp",
+            -- "csharp_ls",
         }
     })
 
@@ -47,40 +48,54 @@ function M.config()
 
     local pid = vim.fn.getpid()
     local dpath = vim.fn.stdpath("data")
-    -- local omnisharp_bin = "C:/Users/User/AppData/Local/nvim-data/mason/packages/omnisharp_MONO/OmniSharp.exe"
     -- local nvim_lsp = require'lspconfig'
-    -- local path_td = 'C:/Users/User/AppData/Local/nvim-data/mason/packages/omnisharp_MONO/'
 
-    require("lspconfig").omnisharp_mono.setup {
+    -- require("lspconfig").omnisharp.setup {
+    --     on_attach = on_attach,
+    --     capabilities = capabilities,
+    --
+    --     cmd = {
+    --         -- 'mono',
+    --         -- '--assembly-loader=strict',
+    --         -- dpath .. "/mason/bin/omnisharp",
+    --         dpath .. "/mason/packages/omnisharp_bin/OmniSharp.exe",
+    --         -- "--languageserver",
+    --         -- '--hostPID',
+    --         -- tostring(pid),
+    --     },
+    --     handlers = {
+    --         ["textDocument/definition"] = require('omnisharp_extended').handler,
+    --     },
+    --     useModernNet = false,
+    --     enable_editorconfig_support = true,
+    --     -- changed
+    --     enable_ms_build_load_projects_on_demand = true,
+    --     -- changed
+    --     enable_roslyn_analyzers = true,
+    --     organize_imports_on_format = false,
+    --     -- changed
+    --     enable_import_completion = true,
+    --     sdk_include_prereleases = true,
+    --     analyze_open_documents_only = false,
+    --
+    --     usemono = true,
+    --     root_dir = require("lspconfig").util.root_pattern("*.csproject", "*.sln"),
+    -- }
+
+    require("lspconfig").csharp_ls.setup({
+        cmd = {
+            "csharp-ls",
+        },
+        filetype = {"cs"},
+        root_dir = require("lspconfig").util.root_pattern("*.csproject", "*.sln"),
+
         on_attach = on_attach,
         capabilities = capabilities,
-
-        cmd = {
-            -- 'mono',
-            -- '--assembly-loader=strict',
-            dpath .. "/mason/bin/omnisharp-mono",
-            "--languageserver",
-            '--hostPID',
-            tostring(pid),
-        },
-        handlers = {
-            ["textDocument/definition"] = require('omnisharp_extended').handler,
-        },
-        enable_editorconfig_support = true,
-        enable_ms_build_load_projects_on_demand = false,
-        enable_roslyn_analyzers = false,
-        organize_imports_on_format = false,
-        enable_import_completion = false,
-        sdk_include_prereleases = true,
-        analyze_open_documents_only = false,
-
-        -- usemono = true,
-        -- root_dir = require("lspconfig").util.root_pattern("*.csproject", "*.sln"),
-    }
+    })
 
     require("lspconfig").texlab.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
+        on_attach = on_attach,
+        capabilities = capabilities,
     }
 end
 
