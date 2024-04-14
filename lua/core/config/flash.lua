@@ -12,6 +12,9 @@ local M = {
 }
 
 function M.config()
+    require("flash").setup({
+        modes = { char = { enabled = false } }
+    })
     require("flash").jump({
     remote_op = {
         restore = true,
