@@ -28,6 +28,33 @@ function M.config()
 		name = "files",
 		o = { [[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]], "recent files"},
 	    },
+        t = {
+            name = "theme",
+            h = {":Telescope colorscheme<CR>", "theme picker"},
+            d = {
+                function ()
+                    vim.o.termguicolors = true
+                    vim.cmd('colorscheme darkplus')
+                    SetLuaLine('darkplus')
+                end,
+                "darkplus"},
+
+            g = {
+                function ()
+                    vim.o.termguicolors = true
+                    vim.cmd('colorscheme gruvbox')
+                    SetLuaLine('gruvbox')
+                end,
+                "gruvbox"},
+
+            t = {
+                function ()
+                    vim.o.termguicolors = true
+                    vim.cmd('colorscheme tokyonight-night')
+                    SetLuaLine('tokyonight')
+                end,
+                "tokyonight"},
+        }
 	    }, { prefix = "<leader>" })
 
     require("which-key").setup {}

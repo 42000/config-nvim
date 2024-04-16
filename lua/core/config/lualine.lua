@@ -2,11 +2,11 @@ local M = {
     'nvim-lualine/lualine.nvim',
 }
 
-function M.config()
+function SetLuaLine(th)
     require('lualine').setup {
         options = {
             icons_enabled = true,
-            theme = 'vscode',
+            theme = th,
         },
         sections = {
             lualine_a = {
@@ -16,6 +16,10 @@ function M.config()
             }
         }}
     }
+end
+
+function M.config()
+    SetLuaLine('tokyonight-night')
 end
 
 return M

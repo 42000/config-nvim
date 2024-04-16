@@ -17,6 +17,7 @@ spec "core.config.buffer_mgr"
 spec "core.config.neoscroll"
 spec "core.config.lsp_config"
 spec "core.config.completions"
+spec "core.config.devicons"
 --spec "core.config.harpoon"
 
 spec "core.config.bonus"
@@ -27,4 +28,4 @@ require('core.lazy')
 
 --THEME
 vim.o.termguicolors = true
-vim.cmd.colorscheme "darkplus"
+vim.cmd[[colorscheme tokyonight-night]]

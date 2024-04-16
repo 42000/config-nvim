@@ -5,11 +5,19 @@ local M = {
 
 function M.config()
     vim.api.nvim_set_keymap(
-    "n",
-    "<space>fb",
-    ":Telescope file_browser<CR>",
+        "n",
+        "<space>fb",
+        ":Telescope file_browser<CR>",
     { noremap = true }
     )
+
+    require "telescope".setup {
+    pickers = {
+        colorscheme = {
+        enable_preview = true
+        }
+    }
+    }
 end
 
 return M
