@@ -19,7 +19,7 @@ function SetLuaLine(th)
 end
 
 function M.config()
-    SetLuaLine('tokyonight-night')
+    SetLuaLine('tokyonight')
 end
 
 return M
