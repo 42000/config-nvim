@@ -46,8 +46,8 @@ function M.config()
     capabilities = capabilities,
     }
 
-    local pid = vim.fn.getpid()
-    local dpath = vim.fn.stdpath("data")
+    -- local pid = vim.fn.getpid()
+    -- local dpath = vim.fn.stdpath("data")
     -- local nvim_lsp = require'lspconfig'
 
     -- require("lspconfig").omnisharp.setup {

@@ -3,7 +3,6 @@ local M = {
     'jiangmiao/auto-pairs',
     'nvim-treesitter/nvim-treesitter-refactor',
     'stevearc/dressing.nvim',
-    'smartpde/telescope-recent-files',
 }
 
 function M.config() end

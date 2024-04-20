@@ -2,6 +2,12 @@ local M = {
     "folke/which-key.nvim",
 }
 
+function SetTheme(th)
+    vim.o.termguicolors = true
+    vim.cmd('colorscheme ' .. th)
+    SetLuaLine(th)
+end
+
 function M.config()
     	vim.o.timeout = true
     	vim.o.timeoutlen = 300
@@ -31,22 +37,11 @@ function M.config()
         t = {
             name = "theme",
             h = {":Telescope colorscheme<CR>", "theme picker"},
-            d = {
-                function ()
-                    vim.o.termguicolors = true
-                    vim.cmd('colorscheme darkplus')
-                    SetLuaLine('darkplus')
-                end,
-                "darkplus"},
 
-            g = {
-                function ()
-                    vim.o.termguicolors = true
-                    vim.cmd('colorscheme gruvbox')
-                    SetLuaLine('gruvbox')
-                end,
-                "gruvbox"},
-
+            g = { function () gruvboxInit() end, "gruvbox-material"},
+            G = { function () SetTheme('gruvbox') end, "gruvbox"},
+            d = { function () SetTheme('darkplus') end, "darkplus"},
+            c = { function () SetTheme('catppuccin') end, "catppuccin"},
             t = {
                 function ()
                     vim.o.termguicolors = true
@@ -54,6 +49,9 @@ function M.config()
                     SetLuaLine('tokyonight')
                 end,
                 "tokyonight"},
+
+            m = { function () SetTheme('material') end, "material"},
+            k = { function () SetTheme('kanagawa') end, "kanagawa"},
         }
 	    }, { prefix = "<leader>" })
 

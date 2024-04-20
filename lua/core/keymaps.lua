@@ -35,6 +35,7 @@ vim.keymap.set('n', "é&", function() ResizeGuiFont(-1) end, opts)
 vim.keymap.set('n', "é²", function() ResetGuiFont() end, opts)
 
 vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>', {silent=true})
+vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<CR>', {silent=true})
 --vim.keymap.set('n', '<leader>b', ':Telescope buffers<CR>', {silent=true})
 vim.keymap.set('n', '<leader>m', ':Telescope marks<CR>', {silent=true})
 
