@@ -22,6 +22,7 @@ spec "core.config.completions"
 spec "core.config.devicons"
 spec "core.config.noice"
 spec "core.config.buffer_mgr"
+spec "core.config.colorizer"
 
 spec "core.config.neoscroll"
 

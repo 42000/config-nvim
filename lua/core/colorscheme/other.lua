@@ -9,7 +9,7 @@ local M = {
 
     --'Mofiqul/vscode.nvim',
     --'aktersnurra/no-clown-fiesta.nvim',
-    -- 'savq/melange-nvim',
+    'savq/melange-nvim',
 
     lazy = false,
     priority = 1000,
